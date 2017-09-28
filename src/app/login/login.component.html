@@ -1,0 +1,13 @@
+<div class="login">
+  <div>
+    <label for="user_name">Username: </label>
+    <input type="text" id="user_name" [(ngModel)]="loginDetails.username" placeholder="username">
+  </div>
+  <div>
+    <label for="password">Password: </label>
+    <input type="password" id="password" [(ngModel)]="loginDetails.password" placeholder="password">
+  </div>
+  <button (click)="login()">Login</button>
+  <a routerLink="/forgot-password" routerLinkActive="active">Forgot Password</a>
+  <button (click)="registerHere()">Register</button>
+</div>
