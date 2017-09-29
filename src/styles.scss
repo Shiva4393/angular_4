@@ -2,6 +2,7 @@
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 .mat-card {
+  .mat-icon{outline: none;cursor: pointer}
   hr.mat-divider {
     margin: 0 -24px 16px -24px;
   }
