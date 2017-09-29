@@ -1,7 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }    from '@angular/forms';
-import { HttpModule }    from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+
+import { CustomMaterialModule } from './custom-material/custom-material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './login/in-memory-login-data.service';
@@ -13,7 +17,8 @@ import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 import { RegisterComponent } from './login/register/register.component';
 
-import { AppRoutingModule }     from './app-routing/app-routing.module';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +32,8 @@ import { AppRoutingModule }     from './app-routing/app-routing.module';
     FormsModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
     HttpModule,
+    BrowserAnimationsModule,
+    CustomMaterialModule,
     AppRoutingModule
   ],
   providers: [LoginService],

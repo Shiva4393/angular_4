@@ -5,6 +5,12 @@ import { LoginService } from '../login.service';
 
 import { LoginFormat } from '../../formats/login-format';
 
+export class Result{
+  success: true;
+  message: string;
+  data: Array<{}>;
+}
+
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -15,6 +21,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   forgotPasswordDetails: any = {};
   userLogins: LoginFormat[];
+  result: Result;
 
   constructor(
     private router: Router,
@@ -28,6 +35,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   forgotPassword(): void {
     this.userLogins.forEach(login => {
+      //this.checkValidation(login);
       if (login.email === this.forgotPasswordDetails.email){
         console.log('success');
         this.goBack();
@@ -37,6 +45,13 @@ export class ForgotPasswordComponent implements OnInit {
       }
     })
   }
+
+  /*checkValidation(login: LoginFormat): Result{
+    //result: Result;
+    if (login.email === this.forgotPasswordDetails.email){
+      this.result.success = true;
+    }
+  }*/
 
   goBack(): void{
     this.router.navigateByUrl('/login');
