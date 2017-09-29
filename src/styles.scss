@@ -1,12 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
-.mat-card > hr.mat-divider{
+.mat-card {
+  hr.mat-divider {
     margin: 0 -24px 16px -24px;
+  }
+  .mat-card-content {
+    .mat-form-field {
+      width: 80%;
+      margin: 0 0 0 10px;
+    }
+  }
 }
 
-.mat-card .mat-card-content .mat-form-field{
-    width: 80%;
-    margin: 0 0 0 10px;
-}
