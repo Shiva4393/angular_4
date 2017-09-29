@@ -5,3 +5,8 @@
 .mat-card > hr.mat-divider{
     margin: 0 -24px 16px -24px;
 }
+
+.mat-card .mat-card-content .mat-form-field{
+    width: 80%;
+    margin: 0 0 0 10px;
+}

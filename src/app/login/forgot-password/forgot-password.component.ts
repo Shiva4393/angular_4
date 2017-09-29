@@ -6,7 +6,7 @@ import { LoginService } from '../login.service';
 import { LoginFormat } from '../../formats/login-format';
 
 export class Result{
-  success: true;
+  success: boolean;
   message: string;
   data: Array<{}>;
 }
@@ -35,23 +35,29 @@ export class ForgotPasswordComponent implements OnInit {
 
   forgotPassword(): void {
     this.userLogins.forEach(login => {
-      //this.checkValidation(login);
-      if (login.email === this.forgotPasswordDetails.email){
+      let result = this.checkValidation(login);
+      if(result.success){
         console.log('success');
         this.goBack();
       }
       else{
-        console.log('Invalid Email Address');
+        console.log('error');
       }
     })
   }
 
-  /*checkValidation(login: LoginFormat): Result{
-    //result: Result;
-    if (login.email === this.forgotPasswordDetails.email){
+  checkValidation(login: LoginFormat): Result{
+    if (login.email === this.forgotPasswordDetails.email)
       this.result.success = true;
-    }
-  }*/
+    else
+      this.result.success = false;
+
+    return this.result;
+  }
+
+  clear(): void{
+    this.forgotPasswordDetails = {};
+  }
 
   goBack(): void{
     this.router.navigateByUrl('/login');

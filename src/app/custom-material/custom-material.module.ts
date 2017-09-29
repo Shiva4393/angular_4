@@ -3,11 +3,13 @@ import { FlexLayoutModule } from '@angular/flex-layout'; // layout npm
 import { 
    MatInputModule,
    MatButtonModule,
-   MatCardModule
+   MatCheckboxModule,
+   MatCardModule,
+   MatIconModule
 } from '@angular/material';
 
 @NgModule({
-  imports: [FlexLayoutModule, MatInputModule, MatButtonModule, MatCardModule],
-  exports: [FlexLayoutModule, MatInputModule, MatButtonModule, MatCardModule],
+  imports: [FlexLayoutModule, MatInputModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule],
+  exports: [FlexLayoutModule, MatInputModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule],
 })
 export class CustomMaterialModule { }

@@ -1,48 +1,62 @@
-<div class="register">
-  <form #registerForm="ngForm">
-    <div>
-      <label for="fName">First Name</label>
-      <input type="text" name="first_name" id="fName" [(ngModel)]="registerDetails.first_name" required #fName="ngModel">
-      <div *ngIf="fName.errors && (fName.dirty || fName.touched)">
-        <span *ngIf="fName.errors.required">First Name Field is Require</span>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <md-card class="register" fxFlex="30">
+    <md-card-header>
+      <div md-card-avatar style="height: auto;">
+        <!-- <button md-icon-button> -->
+          <md-icon [routerLink]="['/login']" style="cursor: pointer">keyboard_backspace</md-icon>
+        <!-- </button> -->
       </div>
-    </div>
-    <div>
-      <label for="lName">Last Name</label>
-      <input type="text" name="last_name" id="lName" [(ngModel)]="registerDetails.last_name">
-    </div>
-    <div>
-      <label for="uName">Username</label>
-      <input type="text" name="username" id="uName" [(ngModel)]="registerDetails.username" required #uName="ngModel">
-      <div *ngIf="uName.errors && (uName.dirty || uName.touched)">
-        <span *ngIf="uName.errors.required && pwd.touched">Username Field is Require</span>
-      </div>
-    </div>
-    <div>
-      <label for="pwd">Password</label>
-      <input type="password" name="password" id="pwd" [(ngModel)]="registerDetails.password" required #pwd="ngModel">
-      <div *ngIf="pwd.errors && (pwd.dirty || pwd.touched)">
-        <span *ngIf="pwd.errors.required && pwd.touched">Password Field is Require</span>
-      </div>
-    </div>
-    <div>
-      <label for="email">Email</label>
-      <input type="email" name="email" id="email" [(ngModel)]="registerDetails.email" required #email="ngModel">
-      <div *ngIf="email.errors && (email.dirty || email.touched)">
-        <span *ngIf="email.errors.required && email.touched">Email Field is Require</span>
-      </div>
-    </div>
-    <div>
-      <label for="phNo">Phone No</label>
-      <input type="text" name="phone_no" id="phNo" [(ngModel)]="registerDetails.phone_no">
-    </div>
-    <div>
-      <label for="age">Age</label>
-      <input type="text" name="age" id="age" [(ngModel)]="registerDetails.age">
-    </div>
-    <div>
-      <button (click)="register()" [disabled]="!registerForm.form.valid">Register</button>
-      <button (click)="clear()">Clear</button>
-    </div>
-  </form>
+      <md-card-title>Register</md-card-title>
+    </md-card-header>
+    <hr class="mat-divider" />
+    <md-card-content>
+      <form #registerForm="ngForm" fxLayout="column">
+        <md-form-field>
+          <input [(ngModel)]="registerDetails.first_name" name="fName" mdInput type="text" placeholder="First Name" required>
+          <!-- <md-hint align="start">Please Enter Registered Email Address.</md-hint> -->
+          <!-- <md-icon mdSuffix>edit</md-icon> -->
+          <md-error>
+            First Name Field is Required
+          </md-error>
+        </md-form-field>
+        <md-form-field>
+          <input [(ngModel)]="registerDetails.last_name" name="lName" mdInput type="text" placeholder="Last Name">
+        </md-form-field>
+        <md-form-field>
+          <input [(ngModel)]="registerDetails.username" name="uName" mdInput type="text" placeholder="Username" required>
+          <!-- <md-hint align="start">Please Enter Registered Email Address.</md-hint> -->
+          <!-- <md-icon mdSuffix>edit</md-icon> -->
+          <md-error>
+            Username Field is Required
+          </md-error>
+        </md-form-field>
+        <md-form-field>
+          <input [(ngModel)]="registerDetails.password" name="pwd" mdInput type="password" placeholder="Password" required>
+          <!-- <md-hint align="start">Please Enter Registered Email Address.</md-hint> -->
+          <!-- <md-icon mdSuffix>edit</md-icon> -->
+          <md-error>
+            Password Field is Required
+          </md-error>
+        </md-form-field>
+        <md-form-field>
+          <input [(ngModel)]="registerDetails.email" name="email" mdInput type="email" placeholder="Email" required>
+          <!-- <md-hint align="start">Please Enter Registered Email Address.</md-hint> -->
+          <!-- <md-icon mdSuffix>edit</md-icon> -->
+          <md-error>
+            Email Field is Required
+          </md-error>
+        </md-form-field>
+        <md-form-field>
+          <input [(ngModel)]="registerDetails.phone_no" name="phn" mdInput type="text" placeholder="Phone Number">
+        </md-form-field>
+        <md-form-field>
+          <input [(ngModel)]="registerDetails.age" name="age" mdInput type="text" placeholder="Age">
+        </md-form-field>
+      </form>
+    </md-card-content>
+    <md-card-actions fxLayout="row" fxLayoutAlign="end center">
+      <button md-button (click)="clear()">Cancel</button>
+      <button md-raised-button class="accent" (click)="register()" [disabled]="!registerForm.form.valid">Register</button>
+    </md-card-actions>
+  </md-card>
 </div>
