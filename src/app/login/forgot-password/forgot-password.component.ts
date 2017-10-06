@@ -14,7 +14,7 @@ export class Result{
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.css'],
+  styleUrls: ['../login.component.scss'],
   providers: [LoginService]
 })
 export class ForgotPasswordComponent implements OnInit {

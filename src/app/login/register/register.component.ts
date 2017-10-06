@@ -8,7 +8,7 @@ import { LoginFormat } from '../../formats/login-format';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['../login.component.scss']
 })
 export class RegisterComponent implements OnInit {
 

@@ -1,6 +1,15 @@
-.login{
+@mixin viewHeight($width){
+    min-height: calc(100vh - #{$width});
+}
+
+.login{@include viewHeight(64px);
+    h4.mat-error{text-align: center}
     .mat-spacer{margin: 10px 0;}
     .mat-checkbox{
         margin: 0 0 0 10px;
     }
 }
+
+.forgot-password{@include viewHeight(64px);}
+
+.register{@include viewHeight(64px);}

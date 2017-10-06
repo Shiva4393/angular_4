@@ -9,8 +9,9 @@ import { LoginFormat } from '../formats/login-format';
 export class LoginService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private loginsUrl = 'api/logins';  // URL to web api
-
+  private loginsUrl = 'api/getLogin';  // URL to web api
+  
+  private getLogin = 'api/getLogin';
   constructor(private http: Http) { }
 
   getLogins(): Promise<LoginFormat[]> {
@@ -20,12 +21,21 @@ export class LoginService {
       .catch(this.handleError);
   }
 
-  registerLogin(register: LoginFormat): Promise<LoginFormat>{
+  checkLogin(param: any): Promise<any> {
+    const url = `${this.loginsUrl}/${param.username}`;
     return this.http
-    .post(this.loginsUrl, JSON.stringify(register), {headers: this.headers})
-    .toPromise()
-    .then(response => response.json().data as LoginFormat[])
-    .catch(this.handleError);
+      .get(this.getLogin)
+      .toPromise()
+      .then(response => response.json().data)
+      .catch(this.handleError);
+  }
+
+  registerLogin(register: LoginFormat): Promise<LoginFormat> {
+    return this.http
+      .post(this.loginsUrl, JSON.stringify(register), { headers: this.headers })
+      .toPromise()
+      .then(response => response.json().data as LoginFormat[])
+      .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

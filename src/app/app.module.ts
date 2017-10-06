@@ -18,6 +18,8 @@ import { ForgotPasswordComponent } from './login/forgot-password/forgot-password
 import { RegisterComponent } from './login/register/register.component';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     AppComponent,
     LoginComponent,
     ForgotPasswordComponent,
-    RegisterComponent
+    RegisterComponent,
+    PageNotFoundComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

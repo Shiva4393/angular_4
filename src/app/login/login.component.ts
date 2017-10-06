@@ -14,6 +14,8 @@ import { LoginFormat } from '../formats/login-format';
 export class LoginComponent implements OnInit {
 
   loginDetails: any = {};
+  submit: boolean;
+  server_error: string;
   userLogins: LoginFormat[];
 
   constructor(
@@ -26,21 +28,26 @@ export class LoginComponent implements OnInit {
       .then(response => this.userLogins = response);
   }
 
-  login(): void {
-    this.userLogins.forEach(login => {
-      if(login.username === this.loginDetails.username){
-        if(login.password === this.loginDetails.password){
-          console.log('success');
+  login(form: any): void {
+    this.submit = true;
+    if (!form.valid) return;
+    this.submit = false;
+    this.loginService
+      .checkLogin(this.loginDetails)
+      .then(response => {
+        if(response.result.success){
+          this.server_error = '';
+          this.goToDashboard();
         }
         else{
-          console.log('Invalid Password');
+          this.server_error = response.result.message;
         }
-        return;
-      }
-      else{
-        console.log('Invalid username and password');
-      }
-    })
+      })
+      .catch(error => this.server_error = 'Invalid username and password');
+  }
+
+  goToDashboard(): void {
+    this.router.navigateByUrl('/dashboard');
   }
 
   registerHere(): void {

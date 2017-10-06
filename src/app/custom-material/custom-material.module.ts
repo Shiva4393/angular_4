@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout'; // layout npm
 import {
+  MatToolbarModule,
   MatInputModule,
   MatButtonModule,
   MatCheckboxModule,
@@ -11,6 +12,7 @@ import {
 @NgModule({
   imports: [
     FlexLayoutModule,
+    MatToolbarModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
@@ -19,6 +21,7 @@ import {
   ],
   exports: [
     FlexLayoutModule,
+    MatToolbarModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
