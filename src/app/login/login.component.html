@@ -1,37 +1,29 @@
-<div class="login" fxLayout="row" fxLayoutAlign="center center">
-  <md-card fxFlex="30">
-    <md-card-header>
-      <md-card-title>Login</md-card-title>
-    </md-card-header>
-    <hr class="mat-divider" />
-    <md-card-content fxLayout="column">
-      <h4 class="mat-error" *ngIf="server_error" [innerHTML]="server_error"></h4>
-      <form #loginForm="ngForm">
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm.form)">
+  <div class="login" fxLayout="row" fxLayoutAlign="center center">
+    <md-card fxFlex="30">
+      <md-card-header>
+        <md-card-title>Login</md-card-title>
+      </md-card-header>
+      <hr class="mat-divider" />
+      <md-card-content fxLayout="column">
+        <h4 class="mat-error" *ngIf="server_error" [innerHTML]="server_error"></h4>
         <md-form-field>
           <input [(ngModel)]="loginDetails.username" name="username" mdInput type="text" placeholder="Username" required>
-          <!-- <md-hint align="start">Please Enter Registered Email Address.</md-hint> -->
-          <!-- <md-icon mdSuffix>edit</md-icon> -->
-          <md-error>
-            Please Enter Username
-          </md-error>
+          <md-error>Please Enter Username</md-error>
         </md-form-field>
         <md-form-field>
           <input [(ngModel)]="loginDetails.password" name="password" mdInput type="password" placeholder="Password" required>
-          <!-- <md-hint align="start">Please Enter Registered Email Address.</md-hint> -->
-          <!-- <md-icon mdSuffix>edit</md-icon> -->
-          <md-error>
-            Please Enter Password
-          </md-error>
+          <md-error>Please Enter Password</md-error>
         </md-form-field>
         <div class="mat-spacer"></div>
         <md-checkbox [(ngModel)]="loginDetails.remember" name="remember">Remember me</md-checkbox>
-      </form>
-    </md-card-content>
-    <md-card-actions fxLayout="row" fxLayoutAlign="end center">
-      <button md-button [routerLink]="['/forgot-password']">Forgot Password?</button>
-      <span flex="grow"></span>
-      <button md-raised-button class="accent" (click)="registerHere()">Register</button>
-      <button md-raised-button color="primary" (click)="login(loginForm.form)">Login</button>
-    </md-card-actions>
-  </md-card>
-</div>
+      </md-card-content>
+      <md-card-actions fxLayout="row" fxLayoutAlign="end center">
+        <button md-button [routerLink]="['/forgot-password']">Forgot Password?</button>
+        <span flex="grow"></span>
+        <button type="button" md-raised-button class="accent" (click)="registerHere()">Register</button>
+        <button type="submit" md-raised-button color="primary">Login</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</form>

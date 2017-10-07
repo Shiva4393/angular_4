@@ -1,62 +1,47 @@
-<div class="register" fxLayout="row" fxLayoutAlign="center center">
-  <md-card fxFlex="30">
-    <md-card-header>
-      <div md-card-avatar style="height: auto;">
-        <!-- <button md-icon-button> -->
-          <md-icon [routerLink]="['/login']">keyboard_backspace</md-icon>
-        <!-- </button> -->
-      </div>
-      <md-card-title>Register</md-card-title>
-    </md-card-header>
-    <hr class="mat-divider" />
-    <md-card-content>
-      <form #registerForm="ngForm" fxLayout="column">
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+  <div class="register" fxLayout="row" fxLayoutAlign="center center">
+    <md-card fxFlex="30">
+      <md-card-header>
+        <div md-card-avatar style="height: auto;">
+            <md-icon [routerLink]="['/login']">keyboard_backspace</md-icon>
+        </div>
+        <md-card-title>Register</md-card-title>
+      </md-card-header>
+      <hr class="mat-divider" />
+      <md-card-content fxLayout="column">
         <md-form-field>
-          <input [(ngModel)]="registerDetails.first_name" name="fName" mdInput type="text" placeholder="First Name" required>
-          <!-- <md-hint align="start">Please Enter Registered Email Address.</md-hint> -->
-          <!-- <md-icon mdSuffix>edit</md-icon> -->
-          <md-error>
-            First Name Field is Required
-          </md-error>
+          <input formControlName="first_name" mdInput type="text" placeholder="First Name">
+          <md-error *ngIf="registerForm.controls.first_name.hasError('required')">Please Enter First Name</md-error>
         </md-form-field>
         <md-form-field>
-          <input [(ngModel)]="registerDetails.last_name" name="lName" mdInput type="text" placeholder="Last Name">
+          <input formControlName="last_name" mdInput type="text" placeholder="Last Name">
         </md-form-field>
         <md-form-field>
-          <input [(ngModel)]="registerDetails.username" name="uName" mdInput type="text" placeholder="Username" required>
-          <!-- <md-hint align="start">Please Enter Registered Email Address.</md-hint> -->
-          <!-- <md-icon mdSuffix>edit</md-icon> -->
-          <md-error>
-            Username Field is Required
-          </md-error>
+          <input formControlName="username" mdInput type="text" placeholder="Username">
+          <md-error *ngIf="registerForm.controls.username.hasError('required')">Please Enter Username</md-error>
+          <md-error *ngIf="registerForm.controls.username.hasError('minlength')">Min. 8 Characters</md-error>
         </md-form-field>
         <md-form-field>
-          <input [(ngModel)]="registerDetails.password" name="pwd" mdInput type="password" placeholder="Password" required>
-          <!-- <md-hint align="start">Please Enter Registered Email Address.</md-hint> -->
-          <!-- <md-icon mdSuffix>edit</md-icon> -->
-          <md-error>
-            Password Field is Required
-          </md-error>
+          <input formControlName="password" mdInput type="password" placeholder="Password">
+          <md-error *ngIf="registerForm.controls.password.hasError('required')">Please Enter Password</md-error>
+          <md-error *ngIf="registerForm.controls.password.hasError('pattern')">Min. 8 and Max. 15. Atleast one uppercase and lowercase and digit</md-error>
         </md-form-field>
         <md-form-field>
-          <input [(ngModel)]="registerDetails.email" name="email" mdInput type="email" placeholder="Email" required>
-          <!-- <md-hint align="start">Please Enter Registered Email Address.</md-hint> -->
-          <!-- <md-icon mdSuffix>edit</md-icon> -->
-          <md-error>
-            Email Field is Required
-          </md-error>
+          <input formControlName="email" mdInput type="email" placeholder="Email">
+          <md-error *ngIf="registerForm.controls.email.hasError('required')">Please Enter Email Address</md-error>
+          <md-error *ngIf="registerForm.controls.email.hasError('email')">Invalid Email Address</md-error>
         </md-form-field>
         <md-form-field>
-          <input [(ngModel)]="registerDetails.phone_no" name="phn" mdInput type="text" placeholder="Phone Number">
+          <input formControlName="phone_no" mdInput type="text" placeholder="Phone Number">
         </md-form-field>
         <md-form-field>
-          <input [(ngModel)]="registerDetails.age" name="age" mdInput type="text" placeholder="Age">
+          <input formControlName="age" mdInput type="text" placeholder="Age">
         </md-form-field>
-      </form>
-    </md-card-content>
-    <md-card-actions fxLayout="row" fxLayoutAlign="end center">
-      <button md-button (click)="clear()">Cancel</button>
-      <button md-raised-button class="accent" (click)="register()" [disabled]="!registerForm.form.valid">Register</button>
-    </md-card-actions>
-  </md-card>
-</div>
+      </md-card-content>
+      <md-card-actions fxLayout="row" fxLayoutAlign="end center">
+        <button type="button" md-button (click)="clear()">Cancel</button>
+        <button type="submit" md-raised-button color="accent">Register</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</form>

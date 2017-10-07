@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoginService } from '../login.service';
 
@@ -12,23 +13,43 @@ import { LoginFormat } from '../../formats/login-format';
 })
 export class RegisterComponent implements OnInit {
 
+  registerForm: FormGroup;
+  submit: boolean;
   registerDetails: any = {};
 
   constructor(
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
+  this.createForm();
+  }
+
+  createForm(): any {
+    this.registerForm = this.fb.group({
+      first_name: [null, Validators.required],
+      last_name: null,
+      username: [null, [Validators.required, Validators.minLength(8)]],
+      password: [null, [Validators.required, Validators.pattern("[a-zA-Z0-9@*#]{8,15}")]],
+      email: [null, [Validators.required, Validators.email]],
+      phone_no: null,
+      age: null
+    })
   }
 
   register(): void{
-    this.loginService.registerLogin(this.registerDetails)
-    .then(response => this.goBack())
+  console.log(this.registerForm.value)
+  this.submit = true;
+  if(!this.registerForm.valid) return;
+  this.submit = false;
+    /*this.loginService.registerLogin(this.registerDetails)
+    .then(response => this.goBack())*/
   }
 
   clear(): void{
-    this.registerDetails = {};
+    this.registerForm.reset();
   }
 
   goBack(): void{
