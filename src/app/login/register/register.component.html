@@ -29,7 +29,7 @@
         <md-form-field>
           <input formControlName="email" mdInput type="email" placeholder="Email">
           <md-error *ngIf="registerForm.controls.email.hasError('required')">Please Enter Email Address</md-error>
-          <md-error *ngIf="registerForm.controls.email.hasError('email')">Invalid Email Address</md-error>
+          <md-error *ngIf="!registerForm.controls.email.hasError('required') && registerForm.controls.email.hasError('email')">Invalid Email Address</md-error>
         </md-form-field>
         <md-form-field>
           <input formControlName="phone_no" mdInput type="text" placeholder="Phone Number">

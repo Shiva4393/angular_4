@@ -1,6 +1,6 @@
 <form #loginForm="ngForm" (ngSubmit)="login(loginForm.form)">
   <div class="login" fxLayout="row" fxLayoutAlign="center center">
-    <md-card fxFlex="30">
+    <md-card fxFlex="25">
       <md-card-header>
         <md-card-title>Login</md-card-title>
       </md-card-header>
@@ -8,21 +8,23 @@
       <md-card-content fxLayout="column">
         <h4 class="mat-error" *ngIf="server_error" [innerHTML]="server_error"></h4>
         <md-form-field>
-          <input [(ngModel)]="loginDetails.username" name="username" mdInput type="text" placeholder="Username" required>
-          <md-error>Please Enter Username</md-error>
+          <input #uname="ngModel" [(ngModel)]="loginDetails.username" name="username" mdInput type="text" placeholder="Username" required email>
+          <md-error *ngIf="uname.invalid && uname.errors.required">Please Enter Username</md-error>
+          <md-error *ngIf="uname.invalid && !uname.errors.required && uname.errors.email">Please Enter Valid Username</md-error>
         </md-form-field>
         <md-form-field>
           <input [(ngModel)]="loginDetails.password" name="password" mdInput type="password" placeholder="Password" required>
           <md-error>Please Enter Password</md-error>
         </md-form-field>
         <div class="mat-spacer"></div>
-        <md-checkbox [(ngModel)]="loginDetails.remember" name="remember">Remember me</md-checkbox>
+        <div fxLayout="row">
+          <md-checkbox [(ngModel)]="loginDetails.remember" name="remember">Remember me</md-checkbox>
+          <span fxFlex></span>
+          <a routerLink="/forgot-password">Forgot Password?</a>
+        </div>
       </md-card-content>
       <md-card-actions fxLayout="row" fxLayoutAlign="end center">
-        <button md-button [routerLink]="['/forgot-password']">Forgot Password?</button>
-        <span flex="grow"></span>
-        <button type="button" md-raised-button class="accent" (click)="registerHere()">Register</button>
-        <button type="submit" md-raised-button color="primary">Login</button>
+        <button fxFill type="submit" md-raised-button color="primary">Login</button>
       </md-card-actions>
     </md-card>
   </div>

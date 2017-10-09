@@ -1,45 +1,50 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-
 import 'rxjs/add/operator/toPromise';
 
+import { environment } from '../../environments/environment';
+
 import { LoginFormat } from '../formats/login-format';
+
+declare var App: any;
 
 @Injectable()
 export class LoginService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private loginsUrl = 'api/getLogin';  // URL to web api
+  private getLogin = App.base_url + 'getLogin';
+  private forgotPassUrl = App.base_url + 'forgotPassword';
+  private registerUrl = App.base_url + 'userRegister';
   
-  private getLogin = 'api/getLogin';
   constructor(private http: Http) { }
 
-  getLogins(): Promise<LoginFormat[]> {
-    return this.http.get(this.loginsUrl)
-      .toPromise()
-      .then(response => response.json().data as LoginFormat[])
-      .catch(this.handleError);
-  }
-
   checkLogin(param: any): Promise<any> {
-    const url = `${this.loginsUrl}/${param.username}`;
     return this.http
-      .get(this.getLogin)
+      .post(this.getLogin, JSON.stringify(param), {headers: this.headers})
       .toPromise()
-      .then(response => response.json().data)
+      .then(response => response.json())
       .catch(this.handleError);
   }
 
-  registerLogin(register: LoginFormat): Promise<LoginFormat> {
+  forgotPassword(email: any): Promise<any>{
     return this.http
-      .post(this.loginsUrl, JSON.stringify(register), { headers: this.headers })
+      .post(this.forgotPassUrl, email, {headers: this.headers})
       .toPromise()
-      .then(response => response.json().data as LoginFormat[])
+      .then(response => response.json())
       .catch(this.handleError);
   }
 
+  registerLogin(register: any): Promise<LoginFormat> {
+    return this.http
+      .post(this.registerUrl, register, { headers: this.headers })
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  /* For Demo Purpose */
   private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
+    console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
 

@@ -2,14 +2,21 @@
     min-height: calc(100vh - #{$width});
 }
 
-.login{@include viewHeight(64px);
+.login{position: absolute;left: 0;right: 0;top: 170px;
     h4.mat-error{text-align: center}
     .mat-spacer{margin: 10px 0;}
     .mat-checkbox{
         margin: 0 0 0 10px;
     }
+    .mat-card{
+        .mat-card-header{min-height: 55px;}
+        .mat-card-actions{margin-left: 0; margin-right: 0; }
+    }
 }
 
-.forgot-password{@include viewHeight(64px);}
+.forgot-password{@extend .login; 
+    .mat-raised-button.mat-primary{width: 80%; margin: 0 auto;}
+    a.back{display: inherit;position: absolute;bottom: -40px;text-decoration: none;}
+}
 
-.register{@include viewHeight(64px);}
+.register{@extend .login}

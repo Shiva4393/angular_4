@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { EmailValidator } from '@angular/forms';
 
 import { LoginService } from './login.service';
-
-import { LoginFormat } from '../formats/login-format';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +15,6 @@ export class LoginComponent implements OnInit {
   loginDetails: any = {};
   submit: boolean;
   server_error: string;
-  userLogins: LoginFormat[];
 
   constructor(
     private router: Router,
@@ -24,8 +22,6 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loginService.getLogins()
-      .then(response => this.userLogins = response);
   }
 
   login(form: any): void {
@@ -47,11 +43,8 @@ export class LoginComponent implements OnInit {
   }
 
   goToDashboard(): void {
+    //location.reload();
     this.router.navigateByUrl('/dashboard');
-  }
-
-  registerHere(): void {
-    this.router.navigateByUrl('/register');
   }
 
 }

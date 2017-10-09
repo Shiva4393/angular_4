@@ -10,12 +10,20 @@ export class InMemoryDataService implements InMemoryDbService {
         ];
         return { logins };*/
         const getLogin: any = {
+            /* Login Success */
             "result": {
+                "success": true,
+                "data": [],
+                "message": "You have logged in successfully.",
+                "status_code": 200
+            }
+            /* Login Failed */
+            /*"result": {
                 "success": false,
                 "data": [],
                 "message": "Invalid Email or Password.",
                 "status_code": 200
-            }
+            }*/
         }
         return { getLogin };
     }
