@@ -15,7 +15,7 @@ export class ResetPasswordComponent implements OnInit {
   resetForm: FormGroup;
   server_msg: string = '';
   success: boolean = false;
-  token: string;
+  urlParams: object;
 
   constructor(
     private loginService: LoginService,
@@ -25,7 +25,7 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit() {
     this.activeRoute.params.subscribe((params: Params) => {
-      this.token = params['id'];
+      this.urlParams = params;
     });
     this.createForm();
   }
@@ -42,7 +42,7 @@ export class ResetPasswordComponent implements OnInit {
 
   resetPassword(form: any): void {
     if(!this.resetForm.valid) return;
-    this.resetForm.value.token = this.token;
+    Object.assign(this.resetForm.value, this.urlParams);
     this.loginService
       .resetPassword(this.resetForm.value)
       .then(response => {

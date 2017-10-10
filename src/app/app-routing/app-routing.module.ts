@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reset-password/:id', component: ResetPasswordComponent },
+  { path: 'reset-password/:id/:token', component: ResetPasswordComponent },
   { path: '**', component: PageNotFoundComponent},
   /*{ path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent }*/

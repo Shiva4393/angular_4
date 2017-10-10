@@ -4,6 +4,8 @@ import { EmailValidator } from '@angular/forms';
 
 import { LoginService } from './login.service';
 
+declare var App: any;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -43,8 +45,7 @@ export class LoginComponent implements OnInit {
   }
 
   goToDashboard(): void {
-    location.reload();
-    //this.router.navigateByUrl('/dashboard');
+    window.location.href = App.base_url;
   }
 
 }
