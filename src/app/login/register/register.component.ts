@@ -4,8 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoginService } from '../login.service';
 
-import { LoginFormat } from '../../formats/login-format';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -27,7 +25,7 @@ export class RegisterComponent implements OnInit {
   this.createForm();
   }
 
-  createForm(): any {
+  createForm(): void {
     this.registerForm = this.fb.group({
       first_name: [null, Validators.required],
       last_name: null,

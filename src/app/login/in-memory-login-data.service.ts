@@ -1,7 +1,5 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-// import { LoginFormat } from '../formats/login-format';
-
 export class InMemoryDataService implements InMemoryDbService {
     createDb() {
         /*const logins: LoginFormat[] = [

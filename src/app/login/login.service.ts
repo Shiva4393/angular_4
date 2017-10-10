@@ -4,8 +4,6 @@ import 'rxjs/add/operator/toPromise';
 
 import { environment } from '../../environments/environment';
 
-import { LoginFormat } from '../formats/login-format';
-
 declare var App: any;
 
 @Injectable()
@@ -15,7 +13,8 @@ export class LoginService {
   private getLogin = App.base_url + 'getLogin';
   private forgotPassUrl = App.base_url + 'forgotPassword';
   private registerUrl = App.base_url + 'userRegister';
-  
+  private resetUrl = App.base_url + 'resetPasswordLink';
+
   constructor(private http: Http) { }
 
   checkLogin(param: any): Promise<any> {
@@ -34,7 +33,15 @@ export class LoginService {
       .catch(this.handleError);
   }
 
-  registerLogin(register: any): Promise<LoginFormat> {
+  resetPassword(param: any): Promise<any>{
+    return this.http
+        .post(this.resetUrl, param, {headers: this.headers})
+        .toPromise()
+        .then(response => response.json())
+        .catch(this.handleError);
+  }
+
+  registerLogin(register: any): Promise<any> {
     return this.http
       .post(this.registerUrl, register, { headers: this.headers })
       .toPromise()

@@ -19,4 +19,6 @@
     a.back{display: inherit;position: absolute;bottom: -40px;text-decoration: none;}
 }
 
+.reset-password{@extend .forgot-password}
+
 .register{@extend .login}
