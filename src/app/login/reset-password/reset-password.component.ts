@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { CustomValidation } from '../custom-validation';
-import { LoginService } from '../login.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-reset-password',

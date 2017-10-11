@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout'; // layout npm
+import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   MatToolbarModule,
   MatInputModule,
