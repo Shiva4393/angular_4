@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
 import { environment } from '../../environments/environment';
@@ -15,37 +16,37 @@ export class LoginService {
   private registerUrl = App.base_url + 'userRegister';
   private resetUrl = App.base_url + 'resetPasswordLink';
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   checkLogin(param: any): Promise<any> {
     return this.http
-      .post(this.getLogin, JSON.stringify(param), { headers: this.headers })
+      .post(this.getLogin, JSON.stringify(param))
       .toPromise()
-      .then(response => response.json())
+      .then(response => response)
       .catch(this.handleError);
   }
 
   forgotPassword(email: any): Promise<any> {
     return this.http
-      .post(this.forgotPassUrl, email, { headers: this.headers })
+      .post(this.forgotPassUrl, email)
       .toPromise()
-      .then(response => response.json())
+      .then(response => response)
       .catch(this.handleError);
   }
 
   resetPassword(param: any): Promise<any> {
     return this.http
-      .post(this.resetUrl, param, { headers: this.headers })
+      .post(this.resetUrl, param)
       .toPromise()
-      .then(response => response.json())
+      .then(response => response)
       .catch(this.handleError);
   }
 
   registerLogin(register: any): Promise<any> {
     return this.http
-      .post(this.registerUrl, register, { headers: this.headers })
+      .post(this.registerUrl, register)
       .toPromise()
-      .then(response => response.json())
+      .then(response => response)
       .catch(this.handleError);
   }
 
